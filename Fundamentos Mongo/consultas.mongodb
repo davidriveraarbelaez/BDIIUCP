@@ -1,0 +1,10 @@
+use("Empresa")
+
+db.Productos.find().limit(3)
+
+db.Productos.find({brand: "ACME"})
+
+db.Productos.find({price: { $gt: 100 } })
+
+db.Productos.find({ available: true })
+

@@ -116,7 +116,6 @@ docker exec -it mongodb mongosh -u root -p example --authenticationDatabase admi
 docker exec -it mongodb mongosh -u root -p example --authenticationDatabase admin --quiet --eval "use walmartDB; db.sales.find().limit(5).forEach(doc => printjson(doc));"
 ```
 
-
 ## Paso 7: Detener los contenedores
 
 Cuando termine, puede detener el entorno con:

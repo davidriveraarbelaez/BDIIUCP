@@ -1,0 +1,77 @@
+// --------------------------------------------
+// MongoDB Playground: Ejemplos de Collections & Methods
+// Base: walmartDB / Colección: sales
+// --------------------------------------------
+
+use("walmartDB")
+
+// 1️⃣ Contar documentos totales
+db.sales.countDocuments()
+
+// Mosstrar el total de documentos con un mensaje
+/*const totalDocs = db.sales.countDocuments()
+console.log(`Total de documentos en la colección 'sales': ${totalDocs}`)
+*/
+
+
+// 2️⃣ Contar documentos con filtro
+// ¿Cuántas ventas en la tienda 1?
+db.sales.countDocuments({ Store: "1" })
+
+// 3️⃣ Insertar documentos (insertOne / insertMany)
+db.sales.insertOne({
+  Invoice_ID: "NEW-001",
+  Branch: "C",
+  City: "Naypyitaw",
+  Customer_type: "Member",
+  Gender: "Male",
+  Product_line: "Electronic accessories",
+  Quantity: 2,
+  Total: 250
+})
+
+db.sales.insertMany([
+  { Invoice_ID: "NEW-002", Branch: "A", City: "Yangon", Customer_type: "Normal", Gender: "Female", Product_line: "Health and beauty", Quantity: 1, Total: 100 },
+  { Invoice_ID: "NEW-003", Branch: "B", City: "Mandalay", Customer_type: "Member", Gender: "Male", Product_line: "Fashion accessories", Quantity: 3, Total: 350 }
+])
+
+// 4️⃣ Buscar documentos (find)
+db.sales.find({ Branch: "A" }).limit(5)
+
+// Solo algunos campos (Invoice_ID y Total)
+db.sales.find(
+  { Branch: "A" },
+  { Invoice_ID: 1, Total: 1, _id: 0 }
+).limit(5)
+
+// 5️⃣ Actualizar documentos (updateOne / updateMany)
+db.sales.updateOne(
+  { Invoice_ID: "NEW-001" },
+  { $set: { Total: 300 } }
+)
+
+db.sales.updateMany(
+  { Branch: "C" },
+  { $inc: { Quantity: 1 } }
+)
+
+// 6️⃣ Eliminar documentos (deleteOne / deleteMany)
+db.sales.deleteOne({ Invoice_ID: "NEW-003" })
+
+db.sales.deleteMany({ Branch: "Z" }) // Ejemplo de limpieza
+
+// 7️⃣ BulkWrite (operaciones en lote)
+db.sales.bulkWrite([
+  { insertOne: { document: { Invoice_ID: "BULK-001", Branch: "A", City: "Yangon", Total: 200 } } },
+  { updateOne: { filter: { Invoice_ID: "NEW-002" }, update: { $set: { Total: 500 } } } },
+  { deleteOne: { filter: { Invoice_ID: "NEW-001" } } }
+])
+
+// 8️⃣ Validar colección
+db.runCommand({ validate: "sales" })
+
+// 9️⃣ Ejemplo de agregación: total de ventas por sucursal
+db.sales.aggregate([
+  { $group: { _id: "$Branch", totalVentas: { $sum: 1 } } },
+  { $sort: { totalVentas: -1 } }
+])

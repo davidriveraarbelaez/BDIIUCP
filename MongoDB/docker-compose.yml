@@ -1,16 +1,21 @@
 services:
   mongo:
     image: mongo
+    container_name: mongodb
+    restart: always
     ports:
       - "27017:27017"
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=example
     volumes:
-      - mongo-data:/data/db
+      - ./data/db:/data/db         # Persistencia de la BD
+      - ./data/import:/data/import # Carpeta para importar CSV/JSON
 
   mongo-express:
     image: mongo-express
+    container_name: mongo-express
+    restart: always
     ports:
       - "8081:8081"
     environment:
@@ -19,6 +24,3 @@ services:
       - ME_CONFIG_MONGODB_ADMINPASSWORD=example
     depends_on:
       - mongo
-
-volumes:
-  mongo-data:

@@ -1,0 +1,16 @@
+show dbs
+db.sales.countDocuments()
+show dbs
+db.sales.findOne()
+db.sales.countDocuments()
+use walmartDB
+db.auto("root", "example")
+show dbs
+mongosh "mongodb://root:example@localhost:27017/walmartDB"
+mongosh "mongodb://root:example@localhost:27017"
+db.sales.countDocuments()
+db.sales.findOne()
+mongosh "mongodb://root:example@localhost:27017"
+db.sales.findOne()
+db.sales.countDocuments()
+use walmartDB
