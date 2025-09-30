@@ -11,6 +11,8 @@ Este material explica cómo levantar MongoDB con Docker, importar un archivo CSV
 
 ## 📂 Estructura de carpetas
 
+```
+/
 BDIIUCP/
 ├── MongoDB/
 │ ├── data/
@@ -20,6 +22,7 @@ BDIIUCP/
 │ ├── docker-compose.yml # Define servicios MongoDB + Mongo Express
 │ ├── importar.sh # Script de importación automática
 │ └── README.md # Esta guía
+```
 
 ## Paso 1: Levantar MongoDB y Mongo Express
 

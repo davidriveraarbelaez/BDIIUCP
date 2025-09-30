@@ -8,7 +8,7 @@ use("walmartDB")
 // 1️⃣ Contar documentos totales
 db.sales.countDocuments()
 
-// Mosstrar el total de documentos con un mensaje
+// Mostrar el total de documentos con un mensaje
 /*const totalDocs = db.sales.countDocuments()
 console.log(`Total de documentos en la colección 'sales': ${totalDocs}`)
 */
