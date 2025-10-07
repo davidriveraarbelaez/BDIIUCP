@@ -5,7 +5,7 @@ artículos por su nombre y categoría.
 
 const express = require('express')
 const app = express()
-const port = 4000
+const port = 3000
 
 // Ruta para mostrar todos los artículos de una categoría
 app.get('/articulos/:categoria', (req, res) => {
