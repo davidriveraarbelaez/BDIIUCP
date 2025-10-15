@@ -3,3 +3,4 @@ mongo-data:/data/db
 MongoDB/data/db
 MongoDB/data/db/mongod.lock
 MongoDB/data/db/WiredTiger
+node_modules
